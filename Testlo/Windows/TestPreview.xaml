@@ -1,0 +1,50 @@
+﻿<Window x:Class="Testlo.Windows.TestPreview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Testlo.Windows"
+        WindowStyle="None"        
+        AllowsTransparency="True"
+        Background="#CC020000"
+        Height="{DynamicResource {x:Static SystemParameters.VirtualScreenHeightKey}}" Width="{DynamicResource {x:Static SystemParameters.VirtualScreenWidthKey}}"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#33000000">
+        <Grid Width="1000" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Width="500" Background="Black" HorizontalAlignment="Left">
+                <TextBlock Name="TestName" Text="Тестирование" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="25" Margin="0,20,0,0"/>
+                <StackPanel Margin="100,100,100,0">
+                    <TextBlock Text="Затрагиваемые темы" Foreground="White" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="20" Margin="0"/>
+                    <ScrollViewer HorizontalAlignment="Center" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" MaxHeight="200">
+                        <TextBlock Name="TagList" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FFFF8000" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="17"/>
+                    </ScrollViewer>
+                </StackPanel>
+                <StackPanel Margin="100,100,100,0">
+                    <TextBlock Text="Кол-во вопросов" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="20" Margin="0"/>
+                    <TextBlock Name="QuestionCount" Text="28" Foreground="#FFFF8000" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="17" Margin="5"/>
+                </StackPanel>
+                <StackPanel Margin="100,100,100,0">
+                    <TextBlock Text="Оценивание" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="20" Margin="0"/>
+                    <TextBlock Name="EvaluationType" Text="Проценты" Foreground="#FFFF8000" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="17" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Width="500" Background="#FF292929" HorizontalAlignment="Right">
+                <StackPanel Margin="100,100,100,0">
+                    <TextBlock Text="Ограничение времени" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="20" Margin="0"/>
+                    <TextBlock Name="SetedTime" Text="Нет" Foreground="#FFFF8000" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="17" Margin="5"/>
+                </StackPanel>
+                <StackPanel Margin="100,100,100,0">
+                    <TextBlock Text="Возможность продолжить после прерывания" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="20" Margin="0"/>
+                    <TextBlock Name="CanContinueAfterAbortStatus" Text="Нет" Foreground="#FFFF8000" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="17" Margin="5"/>
+                </StackPanel>
+                <StackPanel Margin="100,100,100,0">
+                    <TextBlock Text="Отображение правильных варианотв ответа" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="20" Margin="0"/>
+                    <TextBlock Name="ShowAnswersStatus" Text="Отсуствует" Foreground="#FFFF8000" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="17" Margin="5"/>
+                </StackPanel>
+                <Button Content="Пройти тест" Style="{StaticResource FlatTransparentButtonStyle}" Width="250" FontSize="20" Height="50" Margin="0,100" Click="GoToTest_Click"/>
+                <!--<TextBlock Text="Разработчик: " Foreground="#FFC7C7C7" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Thin" FontSize="20" Margin="5,40,0,0"/>-->
+            </StackPanel>
+            <Button Content="&#xf00d;" Style="{StaticResource FaButtonLightStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20" Margin="10" Click="CloseButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>

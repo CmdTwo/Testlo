@@ -1,0 +1,70 @@
+﻿<Page x:Class="Testlo.Pages.Control.CreateTest.CompliteCreatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Testlo.Pages.Control.CreateTest"
+      mc:Ignorable="d" 
+      d:DesignHeight="880" d:DesignWidth="1000"
+      Title="CompliteCreatePage">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Width="500" Background="#33000000">
+                <StackPanel Margin="20">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <TextBlock Text="Разработка теста" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="30" Margin="0"/>
+                        <TextBlock Text="&#xf111;" Foreground="White" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/#Font Awesome 5 Free Solid" FontSize="8" Margin="20,20,20,0"/>
+                        <TextBlock Text="ЗАВЕРШЕНИЕ" Foreground="#FFFF8000" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="15" Margin="0,6"/>
+                    </StackPanel>
+                    <TextBlock Text="Подведение итогов и обощение информации" Foreground="White" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="12" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Margin="100,100,100,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Наименование" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="25" Margin="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Name="TestName" Foreground="#FFFF8000" VerticalAlignment="Bottom" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="20" Margin="0"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="100,100,100,0">
+                    <TextBlock Text="Доступ" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="25" Margin="0"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <ScrollViewer MaxHeight="450" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <StackPanel Name="AccessPreviewList">
+                                
+                            </StackPanel>
+                        </ScrollViewer>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Width="500" Background="#19FFFFFF">
+                <StackPanel Margin="100,50,100,0">
+                    <TextBlock Text="Тэги" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="25" Margin="0"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <ScrollViewer MaxHeight="100" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <TextBlock Name="TagListPreview" Width="300" TextWrapping="Wrap" Text="..." Foreground="#FFFF8000" VerticalAlignment="Bottom" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="15" Margin="0"/>
+                        </ScrollViewer>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="100,50,100,0">
+                    <TextBlock Text="Кол-во вопросов" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="25" Margin="0"/>
+                    <TextBlock x:Name="QuestionCount" Foreground="#FFFF8000" VerticalAlignment="Bottom" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="15" Margin="0"/>
+                </StackPanel>
+                <StackPanel Margin="100,50,100,0">
+                    <TextBlock Text="Вариант оценивания" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="25" Margin="0"/>
+                    <TextBlock Name="EvaluationType" Foreground="#FFFF8000" VerticalAlignment="Bottom" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="15" Margin="0"/>
+                </StackPanel>
+                <StackPanel Margin="100,50,100,0">
+                    <TextBlock Text="Ограничение по времени" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="25" Margin="0"/>
+                    <TextBlock Name="SetTimeView" Foreground="#FFFF8000" VerticalAlignment="Bottom" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="15" Margin="0"/>
+                </StackPanel>
+                <StackPanel Margin="100,50,100,0">
+                    <TextBlock Text="Возможность продолжить после прерывания" TextWrapping="Wrap" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="25" Margin="0"/>
+                    <TextBlock Name="AbortView" Foreground="#FFFF8000" VerticalAlignment="Bottom" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="15" Margin="0"/>
+                </StackPanel>
+                <Button Content="Закончить" Style="{StaticResource FlatTransparentButtonStyle}" Width="200" FontFamily="25" Height="40" Margin="100" Click="Complite_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1966E70-A5A3-41EC-8A1E-9A1146681B16}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Testlo</RootNamespace>
+    <AssemblyName>Testlo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="TServer.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\TServer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Generic\ContentManager.cs" />
+    <Compile Include="Generic\MultiselectWorker.cs" />
+    <Compile Include="Generic\NavigationWorker.cs" />
+    <Compile Include="Generic\PreviewText.cs" />
+    <Compile Include="Logic\NewLogic\TestObj.cs" />
+    <Compile Include="MyElements\AccessPreview.xaml.cs">
+      <DependentUpon>AccessPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\AnswerEditable.xaml.cs">
+      <DependentUpon>AnswerEditable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\AnswerInteract.xaml.cs">
+      <DependentUpon>AnswerInteract.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\ContentElementPreview.xaml.cs">
+      <DependentUpon>ContentElementPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\EvaluationSelect.xaml.cs">
+      <DependentUpon>EvaluationSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\IContentPreview.cs" />
+    <Compile Include="MyElements\ISelectable.cs" />
+    <Compile Include="MyElements\EvaluationSelectElement.xaml.cs">
+      <DependentUpon>EvaluationSelectElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\SelectAccessElement.xaml.cs">
+      <DependentUpon>SelectAccessElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\TagSelect.xaml.cs">
+      <DependentUpon>TagSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\TestCard.xaml.cs">
+      <DependentUpon>TestCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\TransButton.xaml.cs">
+      <DependentUpon>TransButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\TransButtonCircle.xaml.cs">
+      <DependentUpon>TransButtonCircle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyElements\TransButtonWithIcon.xaml.cs">
+      <DependentUpon>TransButtonWithIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\CreateTest\CompliteCreatePage.xaml.cs">
+      <DependentUpon>CompliteCreatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\CreateTest\CreateTestHandlerPage.xaml.cs">
+      <DependentUpon>CreateTestHandlerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\CreateTest\CreateTestTypePage.cs" />
+    <Compile Include="Pages\Control\CreateTest\InputTestNamePage.xaml.cs">
+      <DependentUpon>InputTestNamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\CreateTest\IReturnData.cs" />
+    <Compile Include="Pages\Control\CreateTest\QuestionPage.xaml.cs">
+      <DependentUpon>QuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\CreateTest\QuestionPageTemplates\Template1.xaml.cs">
+      <DependentUpon>Template1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\CreateTest\SelectAccessPage.xaml.cs">
+      <DependentUpon>SelectAccessPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\CreateTest\SelectEvaluationPage.xaml.cs">
+      <DependentUpon>SelectEvaluationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\CreateTest\SelectShowAnswerPage.xaml.cs">
+      <DependentUpon>SelectShowAnswerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\CreateTest\SelectTagPage.xaml.cs">
+      <DependentUpon>SelectTagPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\CreateTest\SetTimeAndAbort.xaml.cs">
+      <DependentUpon>SetTimeAndAbort.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Control\TestsControlPage.xaml.cs">
+      <DependentUpon>TestsControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Main\ControlPage.xaml.cs">
+      <DependentUpon>ControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Main\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Main\Testing\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Dialog\DialogWinType.cs" />
+    <Compile Include="Windows\Dialog\SelectAccessDialog.xaml.cs">
+      <DependentUpon>SelectAccessDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Dialog\SelectSubAccessDialog.xaml.cs">
+      <DependentUpon>SelectSubAccessDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Dialog\SelectTagDialog.xaml.cs">
+      <DependentUpon>SelectTagDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ErrorMessageBox.xaml.cs">
+      <DependentUpon>ErrorMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TempIPInput.xaml.cs">
+      <DependentUpon>TempIPInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TestPreview.xaml.cs">
+      <DependentUpon>TestPreview.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generic\FaIcons.cs" />
+    <Compile Include="Generic\Server.cs" />
+    <Compile Include="Generic\PageNavigator.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MyElements\AccessPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\AnswerEditable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\AnswerInteract.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\ContentElementPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\EvaluationSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\EvaluationSelectElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\SelectAccessElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\TagSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\TestCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\TransButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\TransButtonCircle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyElements\TransButtonWithIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\CreateTest\CompliteCreatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\CreateTest\CreateTestHandlerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\CreateTest\InputTestNamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\CreateTest\QuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\CreateTest\QuestionPageTemplates\Template1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\CreateTest\SelectAccessPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\CreateTest\SelectEvaluationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\CreateTest\SelectShowAnswerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\CreateTest\SelectTagPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\CreateTest\SetTimeAndAbort.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Control\TestsControlPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Main\ControlPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Main\ProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Main\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Main\TestingMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Main\Testing\TestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ButtonTransparentStyleSelect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ButtonTransparentStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\CheckBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ComboBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\FaButtonDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\FaButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\FaButtonIsSelect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\FaButtonLight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\FlatTransparentButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\TransButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\FlatButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Dialog\SelectAccessDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Dialog\SelectSubAccessDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Dialog\SelectTagDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ErrorMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\TempIPInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TestPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\Main\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Main\TestingMenu.xaml.cs">
+      <DependentUpon>TestingMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Fonts\Ubuntu-R.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Ubuntu-M.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Ubuntu-B.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\RalewayRegular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\RalewayLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\RalewayBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Ubuntu-BI.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Ubuntu-C.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Ubuntu-L.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Ubuntu-LI.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Ubuntu-MI.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Ubuntu-RI.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\UbuntuMono-B.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\UbuntuMono-BI.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\UbuntuMono-R.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\UbuntuMono-RI.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Font Awesome 5 Brands-Regular-400.otf" />
+    <Resource Include="Fonts\Font Awesome 5 Free-Regular-400.otf" />
+    <Resource Include="Fonts\Font Awesome 5 Free-Solid-900.otf" />
+    <Resource Include="Fonts\New\CleanvertisingBlack.ttf" />
+    <Resource Include="Fonts\New\CleanvertisingLight.ttf" />
+    <Resource Include="Fonts\New\GloberBold.ttf" />
+    <Resource Include="Fonts\New\GloberThin.ttf" />
+    <Resource Include="Fonts\New\OpenSansCondensedBold.ttf" />
+    <Resource Include="Fonts\New\OpenSansCondensedLight.ttf" />
+    <Resource Include="Fonts\New\OpenSansCondensedLightItalic.ttf" />
+    <Resource Include="Fonts\New\PoiretOneNormal.ttf" />
+    <Resource Include="Fonts\New\RobotoCondensedBold.ttf" />
+    <Resource Include="Fonts\New\RobotoCondensedLight.ttf" />
+    <Resource Include="Fonts\New\RobotoCondensedRegular.ttf" />
+    <Resource Include="Fonts\New\DejaVuSansCondensedBold.ttf" />
+    <Resource Include="Fonts\New\DejaVuSansCondensedBoldItalic.ttf" />
+    <Resource Include="Fonts\New\CuprumBold.ttf" />
+    <Resource Include="Fonts\New\CuprumBoldItalic.ttf" />
+    <Resource Include="Fonts\New\CuprumItalic.ttf" />
+    <Resource Include="Fonts\New\CuprumRegular.ttf" />
+    <Resource Include="Fonts\New\CenturyGothic.ttf" />
+    <Resource Include="Fonts\New\CenturyGothicRegular.ttf" />
+    <Resource Include="Fonts\New\lobsterRegular.ttf" />
+    <Resource Include="Fonts\New\LintelItalic.ttf" />
+    <Resource Include="Fonts\New\LintelRegular.ttf" />
+    <Resource Include="Fonts\New\MyriadProCondBold.ttf" />
+    <Resource Include="Fonts\New\MyriadProCondBoldItalic.ttf" />
+    <Resource Include="Fonts\New\MyriadProCondItalic.ttf" />
+    <Resource Include="Fonts\New\MyriadProCondRegular.ttf" />
+    <Resource Include="Fonts\New\NerisThin.ttf" />
+    <Resource Include="Fonts\New\NerisLight.ttf" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TemplatePage_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\300x300.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TemplatePage_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TemplatePage_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TestCard\1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\soren-sandbothe-46417-unsplash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clem-onojeghuo-175917-unsplash.jpg" />
+    <Resource Include="Images\joshua-newton-146019-unsplash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gabriele-garanzelli-529492-unsplash.jpg" />
+    <Resource Include="Images\jeff-golenski-100379-unsplash.jpg" />
+    <Resource Include="Images\wil-stewart-85504-unsplash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WorkBG_1%28ByNaptailMarshall%29.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

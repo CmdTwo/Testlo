@@ -1,0 +1,43 @@
+﻿<Page x:Class="Testlo.Pages.Control.CreateTest.SelectShowAnswerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Testlo.Pages.Control.CreateTest"
+      mc:Ignorable="d" 
+      d:DesignHeight="880" d:DesignWidth="1000"
+      Title="SelectShowAnswerPage">
+    <Grid Width="1000" HorizontalAlignment="Center">
+        <Grid Width="500" Background="#33000000" HorizontalAlignment="Left">
+            <StackPanel Margin="20">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <TextBlock Text="Разработка теста" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="30" Margin="0"/>
+                    <TextBlock Text="&#xf111;" Foreground="White" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/#Font Awesome 5 Free Solid" FontSize="8" Margin="20,20,20,0"/>
+                    <TextBlock Text="ОТВЕТЫ" Foreground="#FFFF8000" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="15" Margin="0,6"/>
+                </StackPanel>
+                <!--<TextBlock Text="Выберите режим отображения правильных ответов" Foreground="White" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="12" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
+            </StackPanel>
+            <ScrollViewer MaxHeight="500" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="25,50">
+                <WrapPanel Orientation="Horizontal" Name="TagList">
+                </WrapPanel>
+            </ScrollViewer>
+            <TextBlock Text="Выберите в правом окне один из вариантов отображения правильных вариантов ответа" TextWrapping="Wrap" Foreground="#FFE8E8E8" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="20" Margin="50"/>
+        </Grid>
+        <Grid Width="500" Background="#19FFFFFF" HorizontalAlignment="Right">
+            <Button Name="PrevGrid" Content="&#xf0d9;" HorizontalAlignment="Left" Style="{StaticResource FaButtonLightStyle}" Margin="5" FontSize="50" Click="PrevGrid_Click" IsEnabled="False"/>
+            <Button Name="NextGrid" Content="&#xf0da;" HorizontalAlignment="Right" Style="{StaticResource FaButtonLightStyle}" Margin="5" FontSize="50" Click="NextGrid_Click"/>
+            <StackPanel Name="AfterAnswer" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible">
+                <Image Height="400" Width="300" Margin="25"/>
+                <TextBlock Text="После ответа" Foreground="#FFE8E8E8" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="25"/>
+                <TextBlock Text="После неверного ответа, пользователю будут продемонстрированы правильные варианты ответа" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FFE8E8E8" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="20" Margin="10"/>
+            </StackPanel>
+            <StackPanel Name="NoOpportunity" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                <Grid Height="400" Width="300" Margin="25">
+                    <TextBlock FontFamily="/Testlo;component/Fonts/#Font Awesome 5 Free Solid" Foreground="White" Text="&#xf05e;" FontSize="250" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+                <TextBlock Text="Отсуствие возможности" Foreground="#FFE8E8E8" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="25"/>
+                <TextBlock Text="Пользователь не сможет узнать правильные варианты ответа" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FFE8E8E8" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="20" Margin="10"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

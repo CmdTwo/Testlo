@@ -1,0 +1,20 @@
+﻿<Window x:Class="Testlo.Windows.ErrorMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Testlo.Windows"
+        mc:Ignorable="d"
+        WindowStyle="None"        
+        AllowsTransparency="True"
+        Title="ErrorMessageBox"
+        Background="#E5020000" Width="{DynamicResource {x:Static SystemParameters.VirtualScreenWidthKey}}" Height="{DynamicResource {x:Static SystemParameters.VirtualScreenHeightKey}}" WindowStartupLocation="CenterScreen">
+    <StackPanel Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="600">
+        <StackPanel Margin="25">
+            <TextBlock Name="Header" Text="NaN" HorizontalAlignment="Left" FontSize="30" FontFamily="/Testlo;component/Fonts/#Raleway" Foreground="Gray"/>
+            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="2" Margin="0, 0, 0, 20" Width="{Binding ElementName=Header, Path=ActualWidth}"/>
+            <TextBlock Name="ErrorText" Text="NaN" TextAlignment="Center" FontSize="20" FontFamily="/Testlo;component/Fonts/#Raleway" Margin="0,0,0,20" />
+            <Button Content="Ок" Style="{ StaticResource FlatButtonStyle}" Width="100" Click="CompliteButton_Click" Height="35"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

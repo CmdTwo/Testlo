@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="Testlo.MyElements.AccessPreview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Testlo.MyElements"
+             mc:Ignorable="d">
+    <StackPanel>
+        <TextBlock Name="AccessName" Text="Администратор" Foreground="#FFFF8000" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="20" Margin="0"/>
+        <StackPanel Name="SubAccessPreview"  Margin="25,0,0,0">
+            <TextBlock Name="DefaultText" Text="Все учатсники" Foreground="White" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="15" Margin="0" Visibility="Collapsed"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

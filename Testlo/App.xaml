@@ -1,0 +1,23 @@
+﻿<Application x:Class="Testlo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Testlo"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/FaButton.xaml"/>
+                <ResourceDictionary Source="/Styles/FaButtonLight.xaml"/>
+                <ResourceDictionary Source="/Styles/FaButtonDialog.xaml"/>
+                <ResourceDictionary Source="/Styles/FlatButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/FaButtonIsSelect.xaml"/>
+                <ResourceDictionary Source="/Styles/TransButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonTransparentStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonTransparentStyleSelect.xaml"/>
+                <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/FlatTransparentButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/CheckBoxStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

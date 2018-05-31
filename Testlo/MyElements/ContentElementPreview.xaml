@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Testlo.MyElements.ContentElementPreview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Testlo.MyElements"
+             mc:Ignorable="d"
+             FontFamily="/Testlo;component/Fonts/New/#Lintel" 
+             Height="60" 
+             Width="300" 
+             Margin="15"
+             >
+    <Border Name="Border" BorderBrush="{Binding ElementName=TextContent, Path=Foreground}" BorderThickness="1">
+        <Button Name="TextContent" FontSize="17" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0" Style="{StaticResource ButtonTransparentStyle}" Click="TextContent_Click"/>
+    </Border>
+</UserControl>
