@@ -20,12 +20,16 @@ namespace Testlo.MyElements
     /// </summary>
     public partial class EvaluationSelectElement : UserControl
     {
-        public EvaluationSelectElement(string value, string textValue)
+        public bool CanBeFailedValue { get; private set; }
+        public EvaluationSelectElement(string value, string textValue, bool canBeFailedValue)
         {
             InitializeComponent();
 
             ValueContent.Text = value;
             TextContent.Text = textValue;
+            CanBeFailedValue = canBeFailedValue;
+            if (!canBeFailedValue)
+                FailedValueContainer.Visibility = Visibility.Hidden;
         }
 
         public void ChangePercentValue(string newValue)
@@ -35,7 +39,36 @@ namespace Testlo.MyElements
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
+            if (CheckBoxFailed.IsChecked == true)
+                CheckedStatusChange(this, false);
             (Parent as StackPanel).Children.Remove(this);
         }
+
+        private void CheckBoxFailed_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckedStatusChange(this, true);
+        }
+
+        private void CheckBoxFailed_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckedStatusChange(this, false);
+        }
+
+        public void ChangeCanBeFailed(bool status)
+        {
+            CanBeFailedValue = status;
+            if(!status)
+            {
+                if (CheckBoxFailed.IsChecked == true)
+                    CheckBoxFailed.IsChecked = false;
+            }
+        }
+
+        public void SetFailedValueVisibility(Visibility visibility)
+        {
+            FailedValueContainer.Visibility = visibility;
+        }
+
+        public event Action<EvaluationSelectElement, bool> CheckedStatusChange;
     }
 }

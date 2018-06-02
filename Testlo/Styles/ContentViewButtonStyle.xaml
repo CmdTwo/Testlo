@@ -12,9 +12,9 @@
         </Setter>
     </Style>
     <SolidColorBrush x:Key="Button.Static.Background" Color="#33000000"/>
-    <SolidColorBrush x:Key="Button.Static.Border" Color="#FFFF8000"/>
+    <SolidColorBrush x:Key="Button.Static.Border" Color="White"/>
     <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#19000000"/>
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FFEA821C"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FFFF8000"/>
     <SolidColorBrush x:Key="Button.MouseOver.Foreground" Color="#FFFF8000"/>
     <SolidColorBrush x:Key="Button.Pressed.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="Button.Pressed.Border" Color="Transparent"/>
@@ -23,7 +23,7 @@
     <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFA45200"/>
     <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FFA8A8A8"/>
 
-    <Style x:Key="FlatTransparentButtonStyle" TargetType="{x:Type Button}">
+    <Style x:Key="ContentViewButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FontFamily" Value="/Testlo;component/Fonts/New/#Neris Thin"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -33,10 +33,11 @@
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="4"/>        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="BorderVisual" BorderBrush="{StaticResource Button.Static.Border}" BorderThickness="1">
+                    <Border x:Name="BorderVisual" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
                         <Grid SnapsToDevicePixels="true">
                             <Rectangle x:Name="BackgroundVisual" Fill="{TemplateBinding Background}"/>
                             <Rectangle x:Name="PressedVisual" Fill="{DynamicResource Button.Pressed.Background}" Opacity="0"/>
@@ -50,6 +51,7 @@
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="TextElement.Foreground" Value="{StaticResource Button.MouseOver.Foreground}"/>
                             <Setter Property="Background" Value="{StaticResource Button.MouseOver.Background}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="TextElement.Foreground" Value="{StaticResource Button.Pressed.Foreground}"/>

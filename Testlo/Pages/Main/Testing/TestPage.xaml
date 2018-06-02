@@ -36,10 +36,10 @@
                         <TextBlock Name="ResultText" Text="Отлично!" TextAlignment="Center" FontSize="30" FontFamily="/Testlo;component/Fonts/#Ubuntu Light" Foreground="#FFFF8000" Margin="25"/>
                     </StackPanel>
                 </StackPanel>
-                <Button Content="Закончить" Style="{StaticResource FlatTransparentButtonStyle}" Width="250" Height="60" FontSize="25" Click="Complite_Click"/>
+                <Button Content="Закончить" Style="{StaticResource FlatTransparentButtonStyle}" Padding="40,5" Width="250" FontSize="20" Click="Complite_Click"/>
             </StackPanel>
         </Grid>
-        <Button Name="AnswerControlButtton" Content="Ответить" Style="{StaticResource FlatTransparentButtonStyle}" Width="150" Height="50" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" Click="AnswerControlButtton_Click"/>
-        <Button Name="ExitControlButton" Content="Прервать тестирование" Style="{StaticResource FlatTransparentButtonStyle}" Width="250" Height="50" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Click="ExitControlButton_Click"/>
+        <Button Name="AnswerControlButtton" Content="Ответить" Style="{StaticResource FlatTransparentButtonStyle}" Padding="40,5" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" Click="AnswerControlButtton_Click" Margin="30,0"/>
+        <Button Name="ExitControlButton" Content="Прервать тестирование" Style="{StaticResource FlatTransparentButtonStyle}" Padding="40,5" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Top" Click="ExitControlButton_Click" Margin="30"/>
     </Grid>
 </Page>

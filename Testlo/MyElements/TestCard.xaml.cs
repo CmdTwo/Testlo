@@ -25,20 +25,27 @@ namespace Testlo.MyElements
     {
         private Server Server;
         private int TestID;
+        public List<int> UsingTagsIDs { get; private set; }
 
-        public TestCard(object[] param, bool isComplite = false, bool isEditable = false)
+        public TestCard(List<object> param, bool isComplite = false, bool isEditable = false)
         {
             InitializeComponent();
 
             Server = Server.Instance;
 
             TestID = Convert.ToInt32(param[0]);
+            UsingTagsIDs = new List<int>();
 
             Header.Text = (string)param[1];
 
             QuestionCount.Text = param[2].ToString();
             TimeStatus.Text = (param[3].ToString() == "0" ? "Нету" : param[3].ToString());
             EvaluationMode.Text = (param[4].ToString() == "1" ? "Проценты" : "Баллы");
+
+            foreach(int tagID in param[5] as List<int>)
+            {
+                UsingTagsIDs.Add(tagID);
+            }
 
             if (isComplite)
                 CompliteDisplay.Visibility = Visibility.Visible;

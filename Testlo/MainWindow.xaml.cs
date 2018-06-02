@@ -36,10 +36,10 @@ namespace Testlo
             InitializeComponent();
             MainWinFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
 
-            Testlo.Windows.TempIPInput tempIPInput = new Windows.TempIPInput();
-            tempIPInput.ShowDialog();
+            //Testlo.Windows.TempIPInput tempIPInput = new Windows.TempIPInput();
+            //tempIPInput.ShowDialog();
 
-            Server = new Server(tempIPInput.IPResult, 25252);
+            Server = new Server(/*tempIPInput.IPResult*/"192.168.100.120", 25252);
             
             Server.ConnectToServer();
 
@@ -61,6 +61,7 @@ namespace Testlo
             //PageNavigator.NavigateTo(typeof(Pages.Main.MainMenuPage));
             NavigationPanel.Visibility = Visibility.Visible;
             Server.GetPartOfProfile();
+            //ContentManager contentManager = new ContentManager();
         }
 
         private void SetFirstData(string name)
@@ -93,14 +94,14 @@ namespace Testlo
         private void MainWindow_SetTestingMode(TServer.Common.Content.Test obj)
         {
             TestPage testPage = new TestPage(obj);
-            testPage.CompliteOrClose += TestPage_CompliteOrClose;
+            testPage.CompletedOrClose += TestPage_CompliteOrClose;
             TopPanel.Visibility = Visibility.Collapsed;
             PageNavigator.NavigateToWithoutSaving(testPage);
         }
 
         private void TestPage_CompliteOrClose(TestPage sender)
         {
-            sender.CompliteOrClose -= TestPage_CompliteOrClose;
+            sender.CompletedOrClose -= TestPage_CompliteOrClose;
             TopPanel.Visibility = Visibility.Visible;
             NavigationWorker.NavigateTo(0);
         }

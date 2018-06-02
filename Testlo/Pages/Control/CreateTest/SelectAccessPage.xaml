@@ -21,7 +21,7 @@
             <Border BorderBrush="White" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Margin="20">
                     <ScrollViewer HorizontalAlignment="Center" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" MaxHeight="600" Margin="0,0,0,50" Width="500">
-                        <StackPanel Name="AccessSelectList" HorizontalAlignment="Center"/>
+                        <StackPanel Name="AccessSelectList" HorizontalAlignment="Center" SizeChanged="AccessContainer_SizeChanged"/>
                     </ScrollViewer>
                     <Button Content="Добавить уровень" Width="200" Style="{StaticResource FlatTransparentButtonStyle}" Click="AddAccess_Click"/>
                 </StackPanel>

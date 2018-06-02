@@ -16,11 +16,10 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="50,0">
-                    <ComboBox FontSize="16" SelectedIndex="0" FontFamily="/Testlo;component/Fonts/#Ubuntu Light" VerticalAlignment="Center">
-                        <ComboBoxItem Content="Все" HorizontalAlignment="Center"/>
+                    <ComboBox Name="TagComboBox" FontSize="16" SelectedIndex="0" FontFamily="/Testlo;component/Fonts/#Ubuntu Light" VerticalAlignment="Center" SelectionChanged="TagComboBox_SelectionChanged">
                     </ComboBox>
-                    <TextBox FontSize="16" FontFamily="/Testlo;component/Fonts/#Ubuntu Light" VerticalAlignment="Center" MinWidth="100" MaxWidth="200" BorderBrush="#FFFF8000" Background="{x:Null}" BorderThickness="0,0,0,1" Margin="20,0,5,0"/>
-                    <Button Content="&#xf002;" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource FaButtonLightStyle}" FontSize="16"/>
+                    <TextBox Name="SearchNameInput" FontSize="16" Foreground="White" FontFamily="/Testlo;component/Fonts/#Ubuntu Light" VerticalAlignment="Center" MinWidth="100" MaxWidth="200" BorderBrush="#FFFF8000" Background="{x:Null}" BorderThickness="0,0,0,1" Margin="20,0,5,0" TextChanged="SearchNameInput_TextChanged"/>
+                    <Button Visibility="Collapsed" Content="&#xf002;" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource FaButtonLightStyle}" FontSize="16" Click="SearchButton_Click"/>
                 </StackPanel>
             </StackPanel>
             <Rectangle Fill="#FFFF8000" Height="1" VerticalAlignment="Bottom"/>

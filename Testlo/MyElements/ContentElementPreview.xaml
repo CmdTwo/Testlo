@@ -6,11 +6,7 @@
              xmlns:local="clr-namespace:Testlo.MyElements"
              mc:Ignorable="d"
              FontFamily="/Testlo;component/Fonts/New/#Lintel" 
-             Height="60" 
-             Width="300" 
-             Margin="15"
+             Margin="10"
              >
-    <Border Name="Border" BorderBrush="{Binding ElementName=TextContent, Path=Foreground}" BorderThickness="1">
-        <Button Name="TextContent" FontSize="17" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0" Style="{StaticResource ButtonTransparentStyle}" Click="TextContent_Click"/>
-    </Border>
+    <Button Name="TextContent" Content="ТестированиеТестированиеТестирование" FontSize="17" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource ContentViewButtonStyle}" Padding="25,0" Click="TextContent_Click"/>
 </UserControl>

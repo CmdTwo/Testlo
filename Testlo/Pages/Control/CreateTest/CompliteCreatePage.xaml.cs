@@ -65,6 +65,7 @@ namespace Testlo.Pages.Control.CreateTest
             Dispatcher.Invoke(delegate ()
             {
                 CompliteCreateTest();
+                Server.Instance.AddNewTestResponse -= Instance_AddNewTestResponse;
             });
         }
 

@@ -11,14 +11,14 @@
     <Grid>
         <Grid HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal" Margin="50" >
-                <Button Name="AbortButton" Content="Выйти" Style="{StaticResource FlatTransparentButtonStyle}" Width="100" FontSize="20" Height="45" HorizontalAlignment="Center" VerticalAlignment="Top" Click="AbortButton_Click"/>
-                <Button Name="DeletePageButton" Content="&#xf2ed;" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,0,0,0" Style="{StaticResource FaButtonLightStyle}" FontFamily="/Testlo;component/Fonts/#Font Awesome 5 Free Regular" FontSize="35" Click="DeletePageButton_Click" Visibility="Hidden"/>
+                <Button Name="AbortButton" Content="Выйти" Style="{StaticResource FlatTransparentButtonStyle}" Padding="40,5" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Click="AbortButton_Click"/>
+                <Button Name="DeletePageButton" Content="&#xf2ed;" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,0,0,0" Style="{StaticResource FaButtonLightStyle}" FontFamily="/Testlo;component/Fonts/#Font Awesome 5 Free Regular" FontSize="30" Click="DeletePageButton_Click" Visibility="Hidden"/>
             </StackPanel>
             <Button Name="PrevPageButton" Content="&#xf104;" Style="{StaticResource FaButtonLightStyle}" FontSize="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,0" Click="PrevPageButton_Click" IsEnabled="False"/>
         </Grid>
         <Frame Name="CreateTestFrame" HorizontalAlignment="Stretch"/>
         <Grid HorizontalAlignment="Right">
-            <Button Name="CompliteButton" Content="Завершить" Style="{StaticResource FlatTransparentButtonStyle}" Width="150" FontSize="20" Height="45" Margin="50" HorizontalAlignment="Center" VerticalAlignment="Top" Click="CompliteButton_Click" Visibility="Hidden"/>
+            <Button Name="CompliteButton" Content="Завершить" Style="{StaticResource FlatTransparentButtonStyle}" Padding="40,5" FontSize="15" Margin="50" HorizontalAlignment="Center" VerticalAlignment="Top" Click="CompliteButton_Click" Visibility="Hidden"/>
             <Button Name="NextPageButton" Content="&#xf105;" Style="{StaticResource FaButtonLightStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="50" Margin="50,0" Click="NextPageButton_Click"/>
         </Grid>
     </Grid>

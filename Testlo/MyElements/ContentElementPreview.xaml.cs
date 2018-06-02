@@ -57,9 +57,9 @@ namespace Testlo.MyElements
         private void UpdateStatus(bool newStatus)
         {
             if (newStatus)
-                TextContent.Style = FindResource("ButtonTransparentSelectStyle") as Style;
+                TextContent.Style = FindResource("ContentViewButtonSelectStyle") as Style;
             else
-                TextContent.Style = FindResource("ButtonTransparentStyle") as Style;
+                TextContent.Style = FindResource("ContentViewButtonStyle") as Style;
             _isSelect = newStatus;
         }
 

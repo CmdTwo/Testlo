@@ -8,8 +8,8 @@
              Margin="0,20"
              Width="300">
     <StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="5">
-            <CheckBox Name="CheckBoxFailed" Style="{StaticResource SliderCheckBox}" IsChecked="{Binding WindowsAutomatically, Mode=TwoWay}"/>
+        <StackPanel Name="FailedValueContainer" Orientation="Horizontal" Margin="5">
+            <CheckBox Name="CheckBoxFailed" Style="{StaticResource SliderCheckBox}" IsChecked="{Binding WindowsAutomatically, Mode=TwoWay}" Checked="CheckBoxFailed_Checked" Unchecked="CheckBoxFailed_Unchecked"/>
             <TextBlock Text="Если меньше или равно - неудача" Foreground="White" VerticalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Neris Light" FontSize="15" Margin="5,-3,0,0"/>
         </StackPanel>
         <Border BorderBrush="White" BorderThickness="1">

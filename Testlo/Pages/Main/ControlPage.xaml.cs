@@ -26,6 +26,7 @@ namespace Testlo.Pages.Main
     {
         private PageNavigator PageNavigator;
         private NavigationWorker NavigationWorker;
+        private List<Page> ControlMenuPages;
 
         public ControlPage()
         {
@@ -37,7 +38,7 @@ namespace Testlo.Pages.Main
 
             NavigationWorker.AddButton(new TransButtonWithIcon("Тесты", FaIcons.faPaste, false, false, false), delegate () 
             {
-                (PageNavigator.NavigateTo(typeof(Control.TestsControlPage)) as Control.TestsControlPage).CreateTestOnClick += ControlPage_CreateTestOnClick; ;
+                (PageNavigator.NavigateTo(typeof(Control.TestsControlPage)) as Control.TestsControlPage).CreateTestOnClick += ControlPage_CreateTestOnClick;
             });
             NavigationWorker.AddButton(new TransButtonWithIcon("Доступ", FaIcons.faShield, false, false, false), delegate () { });
             NavigationWorker.AddButton(new TransButtonWithIcon("Тэги", FaIcons.faTags, false, false, false), delegate () { });
@@ -50,25 +51,10 @@ namespace Testlo.Pages.Main
         {
             LeftMenu.Visibility = Visibility.Collapsed;
             CreateTestHandlerPage createTestHandlerPage = (PageNavigator.NavigateToWithoutSaving(typeof(Control.CreateTest.CreateTestHandlerPage)) as CreateTestHandlerPage);
-            createTestHandlerPage.AbortCreateTestOnClick += CreateTestPage_AbortCreateTestOnClick;
-            createTestHandlerPage.CompliteButtonOnClick += CreateTestHandlerPage_CompliteButtonOnClick;
+            createTestHandlerPage.AbortOrComplite += CreateTestHandlerPage_AbortOrComplite;
         }
 
-        private void CreateTestHandlerPage_CompliteButtonOnClick(CreateTestHandlerPage sender, Test test)
-        {
-            BeforeClosing(sender);
-            CompliteCreatePage compliteCreatePage = new CompliteCreatePage(test);
-            compliteCreatePage.CompliteCreateTest += CompliteCreatePage_CompliteCreateTest;
-            PageNavigator.NavigateToWithoutSaving(compliteCreatePage);
-        }
-
-        private void CompliteCreatePage_CompliteCreateTest()
-        {
-            LeftMenu.Visibility = Visibility.Visible;
-            NavigationWorker.NavigateTo(0);
-        }
-
-        private void CreateTestPage_AbortCreateTestOnClick(CreateTestHandlerPage sender)
+        private void CreateTestHandlerPage_AbortOrComplite(CreateTestHandlerPage sender)
         {
             BeforeClosing(sender);
             LeftMenu.Visibility = Visibility.Visible;
@@ -77,8 +63,8 @@ namespace Testlo.Pages.Main
 
         private void BeforeClosing(CreateTestHandlerPage sender)
         {
-            sender.AbortCreateTestOnClick -= CreateTestPage_AbortCreateTestOnClick;
-            sender.CompliteButtonOnClick -= CreateTestHandlerPage_CompliteButtonOnClick;
+            (PageNavigator.GetLoadedPages().Find(x => x is Control.TestsControlPage) as Control.TestsControlPage).CreateTestOnClick -= ControlPage_CreateTestOnClick;
+            sender.AbortOrComplite -= CreateTestHandlerPage_AbortOrComplite;
         }
     }
 }

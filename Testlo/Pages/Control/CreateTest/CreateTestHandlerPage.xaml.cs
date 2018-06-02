@@ -24,7 +24,7 @@ namespace Testlo.Pages.Control.CreateTest
     public partial class CreateTestHandlerPage : Page
     {
         private PageNavigator PageNavigator;
-        private List<Page> CreateTestPages;
+        public List<Page> CreateTestPages { get; private set; }
         private int CurrentPageIndex;
         private Test CreatedTest;
         private List<Question> QuestionList;
@@ -37,16 +37,15 @@ namespace Testlo.Pages.Control.CreateTest
             QuestionList = new List<Question>();
             CreatedTest.UpdateField(ContentParam.questionPageList, QuestionList);
             CurrentPageIndex = 0;
-            CreateTestPages = new List<Page>() { new InputTestNamePage(), new SelectAccessPage(), new SelectEvaluationPage(), new SelectTagPage(), new SelectShowAnswerPage(), new SetTimeAndAbort(), new QuestionPage(1) };
+            CreateTestPages = new List<Page>() { new InputTestNamePage(this), new SelectAccessPage(this), new SelectEvaluationPage(this), new SelectTagPage(), new SelectShowAnswerPage(), new SetTimeAndAbort(), new QuestionPage(this, 1) };
             PageNavigator = new PageNavigator(CreateTestFrame, CreateTestPages);
 
             CreateTestPages.ForEach(x => (x as IReturnData).ReturnData += CreateTestHandlerPage_ReturnData);
-            (CreateTestPages[CreateTestPages.Count - 1] as QuestionPage).TemplateIsSetAction += CreateTestHandlerPage_TemplateIsSetAction;
 
             PageNavigator.NavigateToWithoutSaving(CreateTestPages[CurrentPageIndex]);
         }
 
-        private void UpdateButtonStatus()
+        public void UpdateButtonStatus()
         {
             if(CreateTestPages[CurrentPageIndex] is QuestionPage)
             {
@@ -57,14 +56,14 @@ namespace Testlo.Pages.Control.CreateTest
                 DeletePageButton.Visibility = Visibility.Hidden;
             }
 
-            if(CreateTestPages.Where(x => x is QuestionPage).ToArray().All(y => (y as QuestionPage).TemplateIsSet))
-            {
-                CompliteButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                CompliteButton.Visibility = Visibility.Hidden;
-            }
+            //if(CreateTestPages.Where(x => x is QuestionPage).ToArray().All(y => (y as QuestionPage).TemplateIsSet))
+            //{
+            //    CompliteButton.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    CompliteButton.Visibility = Visibility.Hidden;
+            //}
 
             if (CurrentPageIndex == CreateTestPages.Count - 1 && CreateTestPages[CurrentPageIndex] is QuestionPage)
             {
@@ -79,15 +78,17 @@ namespace Testlo.Pages.Control.CreateTest
                 PrevPageButton.IsEnabled = false;
             else if (CurrentPageIndex > 0)
                 PrevPageButton.IsEnabled = true;
+
+            if (!NextPageButton.IsEnabled)
+                NextPageButton.IsEnabled = true;
         }
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentPageIndex == CreateTestPages.Count - 1 && CreateTestPages[CurrentPageIndex] is QuestionPage)
             {
-                CreateTestPages.Add(new QuestionPage(CreateTestPages.Where(x => x is QuestionPage).ToArray().Length + 1));
+                CreateTestPages.Add(new QuestionPage(this, CreateTestPages.Where(x => x is QuestionPage).ToArray().Length + 1));
                 (CreateTestPages[CurrentPageIndex + 1] as IReturnData).ReturnData += CreateTestHandlerPage_ReturnData;
-                (CreateTestPages[CurrentPageIndex + 1] as QuestionPage).TemplateIsSetAction += CreateTestHandlerPage_TemplateIsSetAction;
             }
             CurrentPageIndex++;
             PageNavigator.NavigateToWithoutSaving(CreateTestPages[CurrentPageIndex]);
@@ -96,6 +97,16 @@ namespace Testlo.Pages.Control.CreateTest
 
         private void PrevPageButton_Click(object sender, RoutedEventArgs e)
         {
+            if(CreateTestPages[CurrentPageIndex] is CompliteCreatePage)
+            {
+                (CreateTestPages[CurrentPageIndex] as CompliteCreatePage).CompliteCreateTest -= CompliteCreatePage_CompliteCreateTest;
+                CreateTestPages.RemoveAt(CurrentPageIndex);
+
+                NextPageButton.Visibility = Visibility.Visible;
+                CompliteButton.Visibility = Visibility.Visible;
+                AbortButton.Visibility = Visibility.Visible;
+                DeletePageButton.Visibility = Visibility.Visible;
+            }
             CurrentPageIndex--;
             PageNavigator.NavigateToWithoutSaving(CreateTestPages[CurrentPageIndex]);
             UpdateButtonStatus();
@@ -104,25 +115,33 @@ namespace Testlo.Pages.Control.CreateTest
         private void AbortButton_Click(object sender, RoutedEventArgs e)
         {
             PrepareForClosing();
-            AbortCreateTestOnClick(this);
+            AbortOrComplite(this);
         }
 
         private void DeletePageButton_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        private void CreateTestHandlerPage_TemplateIsSetAction()
-        {
-            UpdateButtonStatus();
+            if (CreateTestPages[CurrentPageIndex] is QuestionPage)
+            {
+                QuestionPage currentPage = CreateTestPages[CurrentPageIndex] as QuestionPage;
+                currentPage.ReturnData -= CreateTestHandlerPage_ReturnData;
+                CreatedTest.RemoveQuestion(currentPage.GetQuestion());
+                CreateTestPages.RemoveAt(CurrentPageIndex);
+                if (CreateTestPages.Count(x => x is QuestionPage) == 0)
+                {
+                    CreateTestPages.Add(new QuestionPage(this, 1));
+                }
+                CreateTestPages.Skip(CurrentPageIndex).ToList().ForEach(y => (y as QuestionPage).UpdateQuestionIndex((y as QuestionPage).QuestionIndex - 1));
+                CurrentPageIndex--;
+                PageNavigator.NavigateToWithoutSaving(CreateTestPages[CurrentPageIndex]);
+                UpdateButtonStatus();
+            }
         }
 
         private void CompliteButton_Click(object sender, RoutedEventArgs e)
         {
-            PrepareForClosing();
+            //PrepareForClosing();
 
             NextPageButton.Visibility = Visibility.Collapsed;
-            PrevPageButton.Visibility = Visibility.Collapsed;
             CompliteButton.Visibility = Visibility.Collapsed;
             AbortButton.Visibility = Visibility.Collapsed;
             DeletePageButton.Visibility = Visibility.Collapsed;
@@ -131,14 +150,29 @@ namespace Testlo.Pages.Control.CreateTest
             {
                 QuestionList.Add((CreateTestPages[CurrentPageIndex] as QuestionPage).GetQuestion());
             }
+
+            CompliteCreatePage compliteCreatePage = new CompliteCreatePage(CreatedTest);
+            compliteCreatePage.CompliteCreateTest += CompliteCreatePage_CompliteCreateTest;
+            CreateTestPages.Add(compliteCreatePage);
+            PageNavigator.NavigateToWithoutSaving(compliteCreatePage);
+
+            CurrentPageIndex = CreateTestPages.Count - 1;
+
+            //PrepareForClosing();
+            //CompliteButtonOnClick(this, CreatedTest);
+        }
+
+        private void CompliteCreatePage_CompliteCreateTest()
+        {
             PrepareForClosing();
-            CompliteButtonOnClick(this, CreatedTest);
+            AbortOrComplite(this);
         }
 
         private void PrepareForClosing()
         {
-            CreateTestPages.ForEach(x => (x as IReturnData).ReturnData -= CreateTestHandlerPage_ReturnData);
-            CreateTestPages.Where(x => (x is QuestionPage)).ToList().ForEach(y => (y as QuestionPage).TemplateIsSetAction -= CreateTestHandlerPage_TemplateIsSetAction);
+            if(CreateTestPages[CurrentPageIndex] is CompliteCreatePage)
+                (CreateTestPages[CurrentPageIndex] as CompliteCreatePage).CompliteCreateTest -= CompliteCreatePage_CompliteCreateTest;
+            CreateTestPages.Where(x => (x is IReturnData)).ToList().ForEach(x => (x as IReturnData).ReturnData -= CreateTestHandlerPage_ReturnData);
         }
 
         private void CreateTestHandlerPage_ReturnData(object[] obj, CreateTestTypePage senderType)
@@ -167,13 +201,15 @@ namespace Testlo.Pages.Control.CreateTest
                     break;
                 case (CreateTestTypePage.QuestionPage):
                     //CreatedTest.UpdateField(ContentParam.questionPageList, new List<QuestionPage>() { obj[1] as QuestionPage } );
-                    if(obj[0] != null)
-                        QuestionList.Add(obj[0] as Question);
+                    if (obj[0] != null)
+                    {
+                        if(!QuestionList.Contains(obj[0] as Question))
+                            QuestionList.Add(obj[0] as Question);
+                    }
                     break;
             }
         }
 
-        public event Action<CreateTestHandlerPage> AbortCreateTestOnClick;
-        public event Action<CreateTestHandlerPage, Test> CompliteButtonOnClick;
+        public event Action<CreateTestHandlerPage> AbortOrComplite;
     }
 }

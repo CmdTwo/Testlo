@@ -9,8 +9,8 @@
              FontFamily="/Testlo;component/Fonts/New/#Lintel" 
              FontSize="17">
     <StackPanel Orientation="Horizontal">
-        <Rectangle Name="LeftRectangle" Width="1" Fill="Black"/>
+        <Rectangle Name="LeftRectangle" Width="1" Fill="White"/>
         <Button Name="TextContent" FontSize="{Binding ElementName=Control, Path=FontSize}" FontFamily="{Binding ElementName=Control, Path=FontFamily}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0" Style="{StaticResource ButtonTransparentStyle}" Click="TextContent_Click"/>
-        <Rectangle Name="RightRectangle" Width="1" Fill="Black"/>
+        <Rectangle Name="RightRectangle" Width="1" Fill="White"/>
     </StackPanel>
 </UserControl>

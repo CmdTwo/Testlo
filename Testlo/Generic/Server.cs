@@ -84,13 +84,19 @@ namespace Testlo.Generic
                             Response_GetAvailableTests(message[ReceiveMessageParam.Params] as Dictionary<ParameterType, object>);
                             break;
                         case ((byte)ResponseCommand.GetFailedTestsResponse):
-                            Response_GetAvailableTests(message[ReceiveMessageParam.Params] as Dictionary<ParameterType, object>);
+                            Response_GetFailedTests(message[ReceiveMessageParam.Params] as Dictionary<ParameterType, object>);
                             break;
                         case ((byte)ResponseCommand.GetComplitedTestsResponse):
-                            Response_GetAvailableTests(message[ReceiveMessageParam.Params] as Dictionary<ParameterType, object>);
+                            Response_GetComplitedTests(message[ReceiveMessageParam.Params] as Dictionary<ParameterType, object>);
                             break;
                         case ((byte)ResponseCommand.GetTestResponse):
-                            Response_GetTestResponse(message[ReceiveMessageParam.Params] as Dictionary<ParameterType, object>);
+                            Response_GetTest(message[ReceiveMessageParam.Params] as Dictionary<ParameterType, object>);
+                            break;
+                        case ((byte)ResponseCommand.SaveProgressResponse):
+                            Response_SaveProgress(message[ReceiveMessageParam.Params] as Dictionary<ParameterType, object>);
+                            break;
+                        case ((byte)ResponseCommand.UserCompletedTestResponse):
+                            Response_UserCompletedTest(message[ReceiveMessageParam.Params] as Dictionary<ParameterType, object>);
                             break;
                     }
                 }
@@ -219,6 +225,34 @@ namespace Testlo.Generic
             byte[] bytes = messageManager.SerializeMessage(request);
             TcpClient.GetStream().Write(bytes, 0, bytes.Length);
         }
+        public void SaveProgress(int testID, double score, int skipQuetions)
+        {
+            Dictionary<ReceiveMessageParam, object> request = new Dictionary<ReceiveMessageParam, object>() {
+                    { ReceiveMessageParam.CommandType, RequestCommand.SaveProgress },
+                    { ReceiveMessageParam.IsRequest, true },
+                    { ReceiveMessageParam.Params, new Dictionary<ParameterType, object> {
+                        { ParameterType.testID, testID },
+                        { ParameterType.progress_score, score },
+                        { ParameterType.progress_skip, skipQuetions }
+                    } } };
+            MessageManager messageManager = new MessageManager();
+            byte[] bytes = messageManager.SerializeMessage(request);
+            TcpClient.GetStream().Write(bytes, 0, bytes.Length);
+        }
+        public void UserCompletedTest(int testID, int score, bool isCompleted)
+        {
+            Dictionary<ReceiveMessageParam, object> request = new Dictionary<ReceiveMessageParam, object>() {
+                    { ReceiveMessageParam.CommandType, RequestCommand.UserCompletedTest },
+                    { ReceiveMessageParam.IsRequest, true },
+                    { ReceiveMessageParam.Params, new Dictionary<ParameterType, object> {
+                        { ParameterType.testID, testID },
+                        { ParameterType.progress_score, score },
+                        { ParameterType.isCompleted, isCompleted }
+                    } } };
+            MessageManager messageManager = new MessageManager();
+            byte[] bytes = messageManager.SerializeMessage(request);
+            TcpClient.GetStream().Write(bytes, 0, bytes.Length);
+        }
 
         #endregion
 
@@ -237,53 +271,53 @@ namespace Testlo.Generic
         {
             AuthorizationResponse((bool)args[ParameterType.authorized]);
         }
-
         private void Response_GetPartOfProfile(Dictionary<ParameterType, object> args)
         {
             GetPartOfProfileResponse((string)args[ParameterType.name]);
         }
-
         private void Response_GetAvailableAccessList(Dictionary<ParameterType, object> args)
         {
             GetAvailableAccessListResponse((List<Access>)args[ParameterType.availableAccessList]);
         }
-
         private void Response_GetAvailableSubgroupList(Dictionary<ParameterType, object> args)
         {
             GetAvailableSubgroupListResponse((List<SubAccess>)args[ParameterType.availableSubAccessList]);
         }
-
         private void Response_GetUserList(Dictionary<ParameterType, object> args)
         {
             GetUserListResponse((Dictionary<int, string>)args[ParameterType.usersList]);
         }
-
         private void Response_GetTagList(Dictionary<ParameterType, object> args)
         {
             GetTagListResponse((List<Tag>)args[ParameterType.tagList]);
         }
-
         private void Response_AddNewTest(Dictionary<ParameterType, object> args)
         {
             AddNewTestResponse((bool)args[ParameterType.responseStatus]);
         }
-
         private void Response_GetAvailableTests(Dictionary<ParameterType, object> args)
         {
-            GetAvailableTestsResponse((List<object[]>)args[ParameterType.responseStatus]);
+            GetAvailableTestsResponse((List<List<object>>)args[ParameterType.responseStatus]);
         }
         private void Response_GetFailedTests(Dictionary<ParameterType, object> args)
         {
-            GetFailedTestsResponse((List<object[]>)args[ParameterType.responseStatus]);
+            GetFailedTestsResponse((List<List<object>>)args[ParameterType.responseStatus]);
         }
         private void Response_GetComplitedTests(Dictionary<ParameterType, object> args)
         {
-            GetComplitedTestsResponse((List<object[]>)args[ParameterType.responseStatus]);
+            GetComplitedTestsResponse((List<List<object>>)args[ParameterType.responseStatus]);
         }
-
-        private void Response_GetTestResponse(Dictionary<ParameterType, object> args)
+        private void Response_GetTest(Dictionary<ParameterType, object> args)
         {
             GetTestResponse((Test)args[ParameterType.test]);
+        }
+        private void Response_SaveProgress(Dictionary<ParameterType, object> args)
+        {
+            SaveProgressResponse((bool)args[ParameterType.responseStatus]);
+        }
+        private void Response_UserCompletedTest(Dictionary<ParameterType, object> args)
+        {
+            UserCompletedTestResponse((bool)args[ParameterType.responseStatus]);
         }
         #endregion
 
@@ -294,9 +328,11 @@ namespace Testlo.Generic
         public event Action<Dictionary<int, string>> GetUserListResponse;
         public event Action<List<Tag>> GetTagListResponse;
         public event Action<bool> AddNewTestResponse;
-        public event Action<List<object[]>> GetAvailableTestsResponse;
-        public event Action<List<object[]>> GetFailedTestsResponse;
-        public event Action<List<object[]>> GetComplitedTestsResponse;
+        public event Action<List<List<object>>> GetAvailableTestsResponse;
+        public event Action<List<List<object>>> GetFailedTestsResponse;
+        public event Action<List<List<object>>> GetComplitedTestsResponse;
         public event Action<Test> GetTestResponse;
+        public event Action<bool> SaveProgressResponse;
+        public event Action<bool> UserCompletedTestResponse;
     }
 }

@@ -21,13 +21,23 @@ namespace Testlo.Pages.Control.CreateTest
     /// </summary>
     public partial class InputTestNamePage : Page, IReturnData
     {
-        public InputTestNamePage()
+        private CreateTestHandlerPage OwnerPage;
+
+        public InputTestNamePage(CreateTestHandlerPage ownerPage)
         {
             InitializeComponent();
+            OwnerPage = ownerPage;
 
             this.Unloaded += InputTestNamePage_Unloaded;
+            this.Loaded += InputTestNamePage_Loaded;
 
-            PreviewText previewText = new PreviewText(NameInputBox, "Тестирование по физике");
+            PreviewText previewText = new PreviewText(NameInputBox, "Тестирование");
+        }
+
+        private void InputTestNamePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (NameInputBox.Text != string.Empty)
+                OwnerPage.NextPageButton.IsEnabled = true;
         }
 
         private void InputTestNamePage_Unloaded(object sender, RoutedEventArgs e)
@@ -37,5 +47,13 @@ namespace Testlo.Pages.Control.CreateTest
         }
 
         public event Action<object[], CreateTestTypePage> ReturnData;
+
+        private void NameInputBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (NameInputBox.Text != string.Empty)
+                OwnerPage.NextPageButton.IsEnabled = true;
+            else
+                OwnerPage.NextPageButton.IsEnabled = false;
+        }
     }
 }

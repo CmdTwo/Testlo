@@ -31,6 +31,7 @@ namespace Testlo.MyElements
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
             (Parent as StackPanel).Children.Remove(this);
+            ElementHasDeleted(this);
         }
 
         private void RightAnswerButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -45,6 +46,10 @@ namespace Testlo.MyElements
             {
                 RightAnswerTB.Foreground = Brushes.White;
             }
+            IsRightAnswerStatusChanged();
         }
+
+        public event Action IsRightAnswerStatusChanged;
+        public event Action<AnswerEditable> ElementHasDeleted;
     }
 }

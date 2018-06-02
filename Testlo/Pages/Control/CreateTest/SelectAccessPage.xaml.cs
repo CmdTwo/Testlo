@@ -24,10 +24,20 @@ namespace Testlo.Pages.Control.CreateTest
     /// </summary>
     public partial class SelectAccessPage : Page, IReturnData
     {
-        public SelectAccessPage()
+        private CreateTestHandlerPage OwnerPage;
+
+        public SelectAccessPage(CreateTestHandlerPage ownerPage)
         {
             InitializeComponent();
+            OwnerPage = ownerPage;
             this.Unloaded += SelectAccessPage_Unloaded;
+            this.Loaded += SelectAccessPage_Loaded;
+        }
+
+        private void SelectAccessPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (AccessSelectList.Children.Count == 0)
+                OwnerPage.NextPageButton.IsEnabled = false;
         }
 
         private void AddAccess_Click(object sender, RoutedEventArgs e)
@@ -50,5 +60,13 @@ namespace Testlo.Pages.Control.CreateTest
         }
 
         public event Action<object[], CreateTestTypePage> ReturnData;
+
+        private void AccessContainer_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (AccessSelectList.Children.Count != 0)
+                OwnerPage.NextPageButton.IsEnabled = true;
+            else
+                OwnerPage.NextPageButton.IsEnabled = false;
+        }
     }
 }

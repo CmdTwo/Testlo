@@ -17,6 +17,8 @@
                 <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/FlatTransparentButtonStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/CheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ContentViewButtonSelectStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ContentViewButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

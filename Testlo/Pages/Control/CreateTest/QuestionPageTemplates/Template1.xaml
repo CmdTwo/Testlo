@@ -12,12 +12,12 @@
         <TextBox Name="HeaderContnet" TextWrapping="Wrap" TextAlignment="Center" MaxLines="10" FontSize="25" FontFamily="/Testlo;component/Fonts/#Ubuntu Light" BorderBrush="White" BorderThickness="0" Background="{x:Null}" Foreground="White" Margin="20"/>
         <Border BorderBrush="White" BorderThickness="1" Width="900" Margin="50,200,50,0">
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <TextBox Name="QuestionInput" TextWrapping="Wrap" TextAlignment="Center" MaxLines="10" FontSize="18" FontFamily="/Testlo;component/Fonts/#Ubuntu Light" BorderBrush="White" BorderThickness="0" Background="{x:Null}" Foreground="White" Margin="25"/>
+                <TextBox Name="QuestionInput" TextWrapping="Wrap" TextAlignment="Center" MaxLines="10" FontSize="18" FontFamily="/Testlo;component/Fonts/#Ubuntu Light" BorderBrush="White" BorderThickness="0" Background="{x:Null}" Foreground="White" Margin="25" TextChanged="QuestionInput_TextChanged"/>
             </ScrollViewer>
         </Border>
         <StackPanel Name="AnswerList" Margin="50,200, 50, 20" HorizontalAlignment="Center">
             
         </StackPanel>
-        <Button Name="AddAnswerButton" Content="Добавить ответ" Style="{StaticResource FlatTransparentButtonStyle}" Width="230" FontSize="17" Height="34" Click="AddAnswer_Click"/>
+        <Button Name="AddAnswerButton" Content="Добавить ответ" Style="{StaticResource FlatTransparentButtonStyle}" Padding="40,5" Width="200" FontSize="15" Click="AddAnswer_Click"/>
     </StackPanel>
 </Page>

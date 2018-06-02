@@ -30,17 +30,17 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" TextElement.FontFamily="/Testlo;component/Fonts/New/#Roboto Condensed Light">
                 <StackPanel VerticalAlignment="Center" Width="70">
                     <TextBlock Name="QuestionCount" Text="10" Foreground="#FFFF8000" TextWrapping="Wrap" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Roboto Condensed Light"  FontSize="16"/>
-                    <TextBlock Text="ВОПРОСОВ" Foreground="White" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="12"/>
+                    <TextBlock Text="ВОПРОСОВ" FontFamily="/Testlo;component/Fonts/New/#Roboto Condensed Light" Foreground="White" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="12"/>
                 </StackPanel>
                 <Rectangle Width="1" Fill="#FF9C9C9C" Margin="18"/>
                 <StackPanel VerticalAlignment="Center" Width="70">
                     <TextBlock Name="TimeStatus" Text="Нет" Foreground="#FFFF8000" TextWrapping="Wrap" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Roboto Condensed Light" FontSize="16"/>
-                    <TextBlock Text="ОГР. ВРЕМЕНИ" Foreground="White" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="12"/>
+                    <TextBlock Text="ОГР. ВРЕМЕНИ" Foreground="White" TextWrapping="Wrap" FontFamily="/Testlo;component/Fonts/New/#Roboto Condensed Light" HorizontalAlignment="Center" FontSize="12"/>
                 </StackPanel>
                 <Rectangle Width="1" Fill="#FF9C9C9C" Margin="18"/>
                 <StackPanel VerticalAlignment="Center" Width="70">
                     <TextBlock Name="EvaluationMode" Text="Баллы" Foreground="#FFFF8000" TextWrapping="Wrap" HorizontalAlignment="Center" FontFamily="/Testlo;component/Fonts/New/#Roboto Condensed Light" FontSize="16"/>
-                    <TextBlock Text="ОЦЕНИВАНИЕ" Foreground="White" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="12"/>
+                    <TextBlock Text="ОЦЕНИВАНИЕ" FontFamily="/Testlo;component/Fonts/New/#Roboto Condensed Light" Foreground="White" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="12"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

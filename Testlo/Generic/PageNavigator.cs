@@ -39,6 +39,10 @@ namespace Testlo.Generic
             return page;
         }
 
+        public List<Page> GetLoadedPages()
+        {
+            return LoadedPages;
+        }
 
         public void NavigateToWithoutSaving(Page page)
         {

@@ -24,12 +24,13 @@ namespace Testlo.Pages.Main.Testing
     public partial class TestPage : Page
     {
         private MultiselectWorker MultiselectWorker;
+        private Server Server;
         private Test Test;
+        private bool TestIsCompleted;
         ///////////////////////
         private bool ShowAnswer;
         ///////////////////////
-        private int Score;
-        private int AddValue;
+        private double Score;
         private int CurrentQuestionID;
         private const string DefaultButtonText = "Ответить";
         private const string ExButtonText = "Далее";
@@ -40,7 +41,9 @@ namespace Testlo.Pages.Main.Testing
         {
             InitializeComponent();
 
+            Server = Server.Instance;
             Test = test;
+            TestIsCompleted = true;
             ShowAnswer = (test.ShowAnswerMode == 1 ? true : false);
             Score = 0;
             MaxAnswers = 0;
@@ -98,16 +101,13 @@ namespace Testlo.Pages.Main.Testing
                 }
             }
 
-            if (Test.Evaluation is Percent)
-            {
-                Score += Convert.ToInt32(Math.Round(Convert.ToDouble(userRightAnswers * ((100 / Test.QuestionPageList.Count) / Test.QuestionPageList[CurrentQuestionID - 1].AnswerList.Count(x => x.IsRightAnswer)))));
-                Score -= Convert.ToInt32(Math.Round(Convert.ToDouble(userWorngAnswers * ((100 / Test.QuestionPageList.Count) / Test.QuestionPageList[CurrentQuestionID - 1].AnswerList.Count(x => x.IsRightAnswer)))));
-            }
-            else
-            {
-                Score += Convert.ToInt32(Math.Round(Convert.ToDouble(userRightAnswers * (((Test.Evaluation as Points).MaxPoints / Test.QuestionPageList.Count) / Test.QuestionPageList[CurrentQuestionID - 1].AnswerList.Count(x => x.IsRightAnswer)))));
-                Score -= Convert.ToInt32(Math.Round(Convert.ToDouble(userWorngAnswers * (((Test.Evaluation as Points).MaxPoints / Test.QuestionPageList.Count) / Test.QuestionPageList[CurrentQuestionID - 1].AnswerList.Count(x => x.IsRightAnswer)))));
-            }
+            double maxValue = 100;
+            if (Test.Evaluation is Points)
+                maxValue = (Test.Evaluation as Points).MaxPoints;
+
+            Score += userRightAnswers * ((maxValue / Test.QuestionPageList.Count) / Test.QuestionPageList[CurrentQuestionID - 1].AnswerList.Count(x => x.IsRightAnswer));
+            Score -= userWorngAnswers * ((maxValue / Test.QuestionPageList.Count) / Test.QuestionPageList[CurrentQuestionID - 1].AnswerList.Count(x => !x.IsRightAnswer));
+
             if (Score < 0)
                 Score = 0;
         }
@@ -135,20 +135,24 @@ namespace Testlo.Pages.Main.Testing
                 AnswerControlButtton.Visibility = Visibility.Collapsed;
                 ExitControlButton.Visibility = Visibility.Collapsed;
                 ResultGrid.Visibility = Visibility.Visible;
-                
+
+                Score = Math.Round(Score);
 
                 ResultValue.Text = Score.ToString() + (Test.Evaluation is Percent ? "%" : "");
                 ResultText.Text = Test.Evaluation.EvaluationDictionary.Values.ToArray()[0];
 
-                foreach (KeyValuePair<int, string> element in Test.Evaluation.EvaluationDictionary)
+                foreach (KeyValuePair<int, string> element in Test.Evaluation.EvaluationDictionary.Reverse())
                 {
-                    if (Score <= element.Key)
+                    if (Score >= element.Key)
                         ResultText.Text = element.Value;
                 }
                 foreach (int value in Test.Evaluation.FailedEvaluationValues)
                 {
                     if (Score <= value)
-                        ResultText.Text = "ПРОВАЛЕННО";
+                    {
+                        ResultText.Text = Test.Evaluation.EvaluationDictionary[value];
+                        TestIsCompleted = false;
+                    }
                 }
 
                 return;               
@@ -159,14 +163,33 @@ namespace Testlo.Pages.Main.Testing
         
         private void ExitControlButton_Click(object sender, RoutedEventArgs e)
         {
-            CompliteOrClose(this);
+            if(Test.CanContinueAfterAbort)
+            {
+                Server.SaveProgressResponse += Instance_SaveProgressResponse;
+                Server.SaveProgress(Test.ID, Score, CurrentQuestionID - 1);
+            }
+            else
+                CompletedOrClose(this);
+        }
+
+        private void Instance_SaveProgressResponse(bool obj)
+        {
+            Server.SaveProgressResponse -= Instance_SaveProgressResponse;
+            Dispatcher.Invoke(CompletedOrClose, this);
         }
 
         private void Complite_Click(object sender, RoutedEventArgs e)
         {
-            CompliteOrClose(this);
+            Server.UserCompletedTestResponse += Server_UserCompletedTestResponse;
+            Server.UserCompletedTest(Test.ID, Convert.ToInt32(Score), TestIsCompleted);
+            CompletedOrClose(this);
         }
 
-        public event Action<TestPage> CompliteOrClose;
+        private void Server_UserCompletedTestResponse(bool obj)
+        {
+            Server.UserCompletedTestResponse -= Server_UserCompletedTestResponse;
+        }
+
+        public event Action<TestPage> CompletedOrClose;
     }
 }
